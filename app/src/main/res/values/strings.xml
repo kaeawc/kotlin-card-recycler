@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">CardRecycler</string>
+    <string name="app_name">Profile Recycler</string>
     <string name="dummy_text">Hi this is some dummy text so you can see what a profile with text would look like.</string>
     <string name="name">Jason Pearson</string>
 </resources>
