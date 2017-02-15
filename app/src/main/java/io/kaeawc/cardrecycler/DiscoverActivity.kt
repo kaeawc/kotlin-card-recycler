@@ -3,7 +3,7 @@ package io.kaeawc.cardrecycler
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 
-class MainActivity : AppCompatActivity() {
+class DiscoverActivity : AppCompatActivity() {
 
     val presenter = DiscoverPresenter()
 

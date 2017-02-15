@@ -39,9 +39,9 @@ class DiscoverPresenter : Animation.AnimationListener {
     var current: String = "A"
     var currentColor = 0
 
-    var weakActivity: WeakReference<MainActivity>? = null
+    var weakActivity: WeakReference<DiscoverActivity>? = null
 
-    fun onCreate(activity: MainActivity) {
+    fun onCreate(activity: DiscoverActivity) {
         weakActivity = WeakReference(activity)
 
         (activity.profileB as ProfileScrollView).scrollingEnabled = false
