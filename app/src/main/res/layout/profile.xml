@@ -1,15 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView
+<io.kaeawc.cardrecycler.ProfileScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/profile"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:scrollbars="none"
+    android:overScrollMode="never"
     tools:context="io.kaeawc.cardrecycler.MainActivity">
 
     <LinearLayout
-        android:id="@+id/profileA"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintTop_toTopOf="parent"
@@ -19,6 +20,7 @@
         android:orientation="vertical">
 
         <LinearLayout
+            android:id="@+id/header"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
@@ -26,6 +28,7 @@
             android:background="@android:color/white">
 
             <ImageView
+                android:id="@+id/thumbnail"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:src="@color/colorAccent"
@@ -33,15 +36,17 @@
                 android:contentDescription="@null"/>
 
             <TextView
+                android:id="@+id/subjectName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/name"
+                tools:text="@string/name"
                 android:layout_gravity="center_vertical"
                 />
 
         </LinearLayout>
 
         <ImageView
+            android:id="@+id/first_photo"
             android:layout_width="match_parent"
             android:layout_height="300dp"
             android:src="@color/colorAccent"
@@ -54,45 +59,17 @@
             android:text="@string/dummy_text"
             android:paddingTop="16dp"
             android:textSize="24sp"
-            android:textAlignment="center"/>
+            android:textAlignment="center"
+            android:background="@android:color/white"/>
 
         <ImageView
+            android:id="@+id/second_photo"
             android:layout_width="match_parent"
             android:layout_height="300dp"
             android:src="@android:color/holo_green_dark"
             android:contentDescription="@null"
             />
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="128dp"
-            android:text="@string/dummy_text"
-            android:paddingTop="16dp"
-            android:textSize="24sp"
-            android:textAlignment="center"/>
-
-        <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="300dp"
-            android:src="@android:color/holo_blue_dark"
-            android:contentDescription="@null"
-            />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="128dp"
-            android:text="@string/dummy_text"
-            android:paddingTop="16dp"
-            android:textSize="24sp"
-            android:textAlignment="center"/>
-
-        <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="300dp"
-            android:src="@android:color/holo_orange_dark"
-            android:contentDescription="@null"
-            />
-
     </LinearLayout>
 
-</ScrollView>
+</io.kaeawc.cardrecycler.ProfileScrollView>
