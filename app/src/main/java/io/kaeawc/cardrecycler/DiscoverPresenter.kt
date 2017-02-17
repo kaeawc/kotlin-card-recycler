@@ -44,18 +44,18 @@ class DiscoverPresenter : Animation.AnimationListener {
     fun onCreate(activity: DiscoverActivity) {
         weakActivity = WeakReference(activity)
 
-        (activity.profileB as ProfileScrollView).scrollingEnabled = false
-        (activity.profileC as ProfileScrollView).scrollingEnabled = false
-        randomizeProfile(activity.profileA as ProfileScrollView)
-        randomizeProfile(activity.profileB as ProfileScrollView)
-        randomizeProfile(activity.profileC as ProfileScrollView)
-        setProfileHeader(activity.profileA as ProfileScrollView, "A")
-        setProfileHeader(activity.profileB as ProfileScrollView, "B")
-        setProfileHeader(activity.profileC as ProfileScrollView, "C")
+        ((activity.profileB).findViewById(R.id.profileScrollView) as ProfileScrollView).scrollingEnabled = false
+        ((activity.profileC).findViewById(R.id.profileScrollView) as ProfileScrollView).scrollingEnabled = false
+        randomizeProfile(activity.profileA)
+        randomizeProfile(activity.profileB)
+        randomizeProfile(activity.profileC)
+        setProfileHeader(activity.profileA, "A")
+        setProfileHeader(activity.profileB, "B")
+        setProfileHeader(activity.profileC, "C")
 
     }
 
-    fun setProfileHeader(layout: ScrollView, name: String) {
+    fun setProfileHeader(layout: View, name: String) {
         val header = layout.findViewById(R.id.header) as LinearLayout
         val subjectName = layout.findViewById(R.id.subjectName) as TextView
         subjectName.text = name
@@ -103,7 +103,7 @@ class DiscoverPresenter : Animation.AnimationListener {
         }
     }
 
-    fun prepareNextProfile(profileLayout: ProfileScrollView) {
+    fun prepareNextProfile(profileLayout: LinearLayout) {
 
         val activity = weakActivity?.get() ?: return
         profileLayout.layoutParams = getNextLayoutParams(false)
@@ -111,7 +111,7 @@ class DiscoverPresenter : Animation.AnimationListener {
         profileLayout.bringToFront()
         profileLayout.visibility = View.VISIBLE
         profileLayout.alpha = 0f
-        profileLayout.scrollingEnabled = false
+        (profileLayout.findViewById(R.id.profileScrollView) as ProfileScrollView).scrollingEnabled = false
 
         val bottom = activity.rootLayout.measuredHeight.toFloat()
         val height = 148
@@ -123,7 +123,7 @@ class DiscoverPresenter : Animation.AnimationListener {
         profileLayout.startAnimation(prepareNext)
     }
 
-    fun hidePreviousProfile(profileLayout: ProfileScrollView) {
+    fun hidePreviousProfile(profileLayout: LinearLayout) {
         val hidePrevious = HidePreviousAnimation(0f, -148f)
         hidePrevious.duration = PREVIOUS_DURATION
         hidePrevious.startOffset = PREVIOUS_DELAY
@@ -138,15 +138,15 @@ class DiscoverPresenter : Animation.AnimationListener {
         when (current) {
             "A" -> {
                 activity.profileA.visibility = View.GONE
-                (activity.profileB as ProfileScrollView).scrollingEnabled = true
+                ((activity.profileB).findViewById(R.id.profileScrollView) as ProfileScrollView).scrollingEnabled = true
             }
             "B" -> {
                 activity.profileB.visibility = View.GONE
-                (activity.profileC as ProfileScrollView).scrollingEnabled = true
+                ((activity.profileC).findViewById(R.id.profileScrollView) as ProfileScrollView).scrollingEnabled = true
             }
             "C" -> {
                 activity.profileC.visibility = View.GONE
-                (activity.profileA as ProfileScrollView).scrollingEnabled = true
+                ((activity.profileA).findViewById(R.id.profileScrollView) as ProfileScrollView).scrollingEnabled = true
             }
         }
     }
@@ -169,23 +169,23 @@ class DiscoverPresenter : Animation.AnimationListener {
         when (current) {
             "A" -> {
                 transitionToNextProfile(activity.profileB)
-                prepareNextProfile(activity.profileC as ProfileScrollView)
-                hidePreviousProfile(activity.profileA as ProfileScrollView)
+                prepareNextProfile(activity.profileC as LinearLayout)
+                hidePreviousProfile(activity.profileA as LinearLayout)
             }
             "B" -> {
                 transitionToNextProfile(activity.profileC)
-                prepareNextProfile(activity.profileA as ProfileScrollView)
-                hidePreviousProfile(activity.profileB as ProfileScrollView)
+                prepareNextProfile(activity.profileA as LinearLayout)
+                hidePreviousProfile(activity.profileB as LinearLayout)
             }
             "C" -> {
                 transitionToNextProfile(activity.profileA)
-                prepareNextProfile(activity.profileB as ProfileScrollView)
-                hidePreviousProfile(activity.profileC as ProfileScrollView)
+                prepareNextProfile(activity.profileB as LinearLayout)
+                hidePreviousProfile(activity.profileC as LinearLayout)
             }
         }
     }
 
-    fun randomizeProfile(layout: ScrollView) {
+    fun randomizeProfile(layout: View) {
         val thumbnail = layout.findViewById(R.id.thumbnail) as ImageView?
         val photos = listOf(
                 layout.findViewById(R.id.first_photo) as ImageView?,
